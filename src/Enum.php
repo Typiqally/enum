@@ -7,8 +7,8 @@ use JsonSerializable;
 use ReflectionClass;
 use ReflectionException;
 use Typiqally\Enum\Exceptions\DuplicateException;
-use Typiqally\Enum\Exceptions\UnexpectedTypeException;
 use Typiqally\Enum\Exceptions\EnumException;
+use Typiqally\Enum\Exceptions\UnexpectedTypeException;
 
 abstract class Enum implements JsonSerializable
 {
@@ -198,7 +198,7 @@ abstract class Enum implements JsonSerializable
     /**
      * @return string
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): string
     {
         return $this->value;
     }
@@ -219,5 +219,13 @@ abstract class Enum implements JsonSerializable
         }
 
         return null;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return strval($this->key);
     }
 }
